@@ -13,12 +13,7 @@ minikube dashboard --url &
 kubectl port-forward svc/argocd-server -n argocd 8080:443 &
 
 # Forward the port for Clickhouse server
-kubectl port-forward -n clickhouse svc/clickhouse \
-  8123:8123 \
-  9000:9000 \
-  9004:9004 \
-  9005:9005 \
-  9009:9009 &
+kubectl port-forward -n clickhouse svc/clickhouse 8123:8123 &
 
 # Forward the port for Prometheus server
 kubectl port-forward -n prometheus svc/prometheus-server 9090:80 &
