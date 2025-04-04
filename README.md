@@ -1,12 +1,12 @@
-# Multi-node Minikube cluster with ArgoCD
+# Deploy a multi-node Kubernetes cluster using minikube
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-- [Setup a Multi-Node Minikube Cluster](#setup-a-multi-node-minikube-cluster)
-  - [Step 1: Install Minikube and kubectl](#step-1-install-minikube-and-kubectl)
-  - [Step 2: Start the Multi-Node Minikube Cluster](#step-2-start-the-multi-node-minikube-cluster)
+- [Setup a multi-node Kubernetes cluster using minikube](#setup-a-multi-node-kubernetes-cluster-using-minikube)
+  - [Step 1: Install minikube and kubectl](#step-1-install-minikube-and-kubectl)
+  - [Step 2: Start the multi-node minikube cluster](#step-2-start-the-multi-node-minikube-cluster)
 - [Install ArgoCD](#install-argocd)
   - [Step 1: Install ArgoCD](#step-1-install-argocd)
   - [Step 2: Access the ArgoCD UI](#step-2-access-the-argocd-ui)
@@ -23,7 +23,7 @@ Before starting, ensure you have the following installed on your system:
 - **kubectl**: The Kubernetes command-line tool.
 - **Minikube**: The local Kubernetes cluster manager.
 
-## Setup a Multi-Node Minikube Cluster
+## Setup a multi-node Kubernetes cluster using minikube
 
 ### Step 1: Install Minikube and kubectl
 
@@ -56,23 +56,21 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```
 
-### Step 2: Start the Multi-Node Minikube Cluster
+### Step 2: Start the multi-node minikube cluster
 
-To start a multi-node Minikube cluster, use the following commands:
+To start a multi-node cluster with 5 nodes, each node with 4 vCPUs, 4GB memory, and 30GB disk, use the following commands:
 
 ```bash
-# Start a multi-node cluster with 5 nodes, each node with 4 vCPUs, 2GB memory, and 10GB disk. Modify this parameters to your needs
-# Enables ingress and metrics-server addons
 minikube start --cpus 4 --memory 4096 --disk-size 30g --nodes 5 --base-image docker.io/kicbase/stable:v0.0.46 -p tb-cluster
 minikube profile tb-cluster
 minikube addons enable ingress
 minikube addons enable metrics-server
+```
+Verify the the nodes are running.
 
-# Verify that the cluster is running
+```bash
 kubectl get nodes
 ```
-
-This will create a Minikube cluster with 5 nodes. You can adjust the number of nodes by changing the `--nodes` parameter.
 
 ## Install ArgoCD
 
