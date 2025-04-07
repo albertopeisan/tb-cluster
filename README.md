@@ -132,7 +132,7 @@ To update the ArgoCD admin password, follow these steps:
 3. **Update the Admin Password**:
 
    ```bash
-   argocd account update-password --account admin --current-password <current-password> --new-password <new-password>
+   argocd account update-password --account admin --current-password --current-password $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo) --new-password <new-password>
    ```
 
 Replace `<current-password>` and `<new-password>` with your actual current and new passwords.
