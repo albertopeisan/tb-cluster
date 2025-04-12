@@ -79,11 +79,10 @@ kubectl get nodes
 To install ArgoCD, use the following commands:
 
 ```bash
-# Create a namespace for ArgoCD
-kubectl create namespace argocd
-
 # Deploy ArgoCD
-kubectl apply -f ./argocd/manifests/argocd.yaml -n argocd
+helm repo add argo https://argoproj.github.io/argo-helm
+helm repo update
+helm install argocd argo/argo-cd -n argocd --create-namespace --version 7.8.23
 ```
 
 ### Step 2: Access the ArgoCD UI

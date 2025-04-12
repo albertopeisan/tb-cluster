@@ -1,8 +1,9 @@
 Create namespace and deploy argocd.
 
 ```bash
-kubectl create namespace argocd
-kubectl apply -f ./argocd/manifests/argocd.yaml -n argocd
+helm repo add argo https://argoproj.github.io/argo-helm
+helm repo update
+helm install argocd argo/argo-cd -n argocd --create-namespace --version 7.8.23
 ```
 
 Wait until the argocd deployment is running and port-forward traffic.
